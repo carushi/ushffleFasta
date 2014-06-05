@@ -1,5 +1,6 @@
 #-*- coding:utf-8 -*-
 
+import sys
 import ushuffle
 
 class Shuffle:
@@ -38,7 +39,7 @@ class Shuffle:
 						out = out+chrseq[0:i]
 						chrseq = chrseq[i:]
 						break
-			if chrseq.find("NNNN"):
+			if chrseq.find("NNNN") == True:
 				index = chrseq.index("NNNN")
 				out = out+ushuffle.shuffle(chrseq[0: (index)], index+4, 3)
 				chrseq = chrseq[(index):]
@@ -47,14 +48,14 @@ class Shuffle:
 				chrseq = ""
 				break
 		out = self.sep(out)
-		f = open(dir+chrom+"_shuffle_3.fa", "w")
+		f = open(chrom+"_shuffle_3.fa", "w")
 		f.write(">"+chrom+"\n")
 		f.write(out)
 		f.close()
 
 def shuffleCrm(file):
 	sh = Shuffle()
-	sh.simpleShuffleFasta(chrfile, DIR)
+	sh.simpleShuffleFasta(file)
 
 
 if __name__=="__main__":
